@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -27,6 +29,8 @@ import com.atom.myapp.ui.theme.MyAppTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Button
+import androidx.compose.ui.unit.sp
 
 
 class MainActivity : ComponentActivity() {
@@ -50,13 +54,16 @@ fun Screen(){
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
-    ){
-        Icon(
-            imageVector =Icons.Filled.Star ,
-            contentDescription = "Prueba",
-            tint=Color.Magenta,
-            modifier = Modifier.size(50.dp)
-        )
-
+    ) {
+        Button(onClick = {}) {
+            Icon(
+                imageVector = Icons.Filled.Star,
+                contentDescription = "Prueba",
+                tint = Color.Magenta,
+                modifier = Modifier.size(50.dp)
+            )
+            Spacer(modifier = Modifier.height(40.dp))
+            Text("Favorito", fontSize = 30.sp)
+        }
     }
 }
