@@ -30,6 +30,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 
 
@@ -57,13 +59,16 @@ fun Screen(){
     ) {
         Button(onClick = {}) {
             Icon(
-                imageVector = Icons.Filled.Star,
+                painter = painterResource(id = R.drawable.quake),
+                //imageVector = Icons.Filled.Star,
                 contentDescription = "Prueba",
-                tint = Color.Magenta,
-                modifier = Modifier.size(50.dp)
+                tint = Color.White,
+                modifier = Modifier
+                    .size(50.dp)
+                   // .rotate(degrees = 90f)
             )
             Spacer(modifier = Modifier.height(40.dp))
-            Text("Favorito", fontSize = 30.sp)
+            Text("  Favorito", fontSize = 30.sp)
         }
     }
 }
