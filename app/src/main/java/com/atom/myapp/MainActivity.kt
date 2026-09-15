@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,7 +32,9 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.sp
 
 
@@ -57,18 +60,19 @@ fun Screen(){
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Button(onClick = {}) {
-            Icon(
-                painter = painterResource(id = R.drawable.quake),
-                //imageVector = Icons.Filled.Star,
-                contentDescription = "Prueba",
-                tint = Color.White,
-                modifier = Modifier
-                    .size(50.dp)
-                   // .rotate(degrees = 90f)
-            )
+
+           Image(
+               painter = painterResource(id = R.drawable.arknights02),
+               contentDescription = "Imagen PNG",
+               contentScale = ContentScale.Fit,
+               modifier = Modifier.size(300.dp)
+           )
             Spacer(modifier = Modifier.height(40.dp))
-            Text("  Favorito", fontSize = 30.sp)
-        }
+        Image(
+           imageVector = ImageVector.vectorResource(id = R.drawable.supercoil_svgrepo_com),
+            contentDescription = "Imagen Vector",
+            contentScale = ContentScale.Fit,
+            modifier = Modifier.size(300.dp)
+        )
     }
 }
