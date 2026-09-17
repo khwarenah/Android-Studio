@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun Screen(){
     Column (
@@ -78,13 +78,13 @@ fun Screen(){
            imageVector = ImageVector.vectorResource(id = R.drawable.supercoil_svgrepo_com),
             contentDescription = "Imagen Vector",
            contentScale = ContentScale.Fit,
-           modifier = Modifier.size(300.dp)
+           modifier = Modifier.size(100.dp)
         )
 
         AsyncImage(
-            model = "https://i.pinimg.com/736x/f8/01/71/f801716d5be112d2a9b48da3eb663c01.jpg",
+            model = "https://arknights.wiki.gg/images/Kal%27tsit_-_Esperanta.png?b8fcdd",
             contentDescription = "Imagen tomada de Internet",
-            modifier = Modifier.size(50.dp),
+            modifier = Modifier.size(250.dp),
             contentScale = ContentScale.Crop
         )
     }
