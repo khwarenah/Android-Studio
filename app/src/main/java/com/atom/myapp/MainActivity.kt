@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Scaffold
@@ -33,9 +34,13 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.sp
+import coil3.ImageLoader
+import coil3.compose.AsyncImage
+import coil3.network.okhttp.OkHttpNetworkFetcherFactory
 
 
 class MainActivity : ComponentActivity() {
@@ -52,6 +57,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Preview(showBackground = true)
 @Composable
 fun Screen(){
     Column (
@@ -67,12 +73,20 @@ fun Screen(){
                contentScale = ContentScale.Fit,
                modifier = Modifier.size(300.dp)
            )
-            Spacer(modifier = Modifier.height(40.dp))
+           // Spacer(modifier = Modifier.height(40.dp))
         Image(
            imageVector = ImageVector.vectorResource(id = R.drawable.supercoil_svgrepo_com),
             contentDescription = "Imagen Vector",
-            contentScale = ContentScale.Fit,
-            modifier = Modifier.size(300.dp)
+           contentScale = ContentScale.Fit,
+           modifier = Modifier.size(300.dp)
+        )
+
+        AsyncImage(
+            model = "https://i.pinimg.com/736x/f8/01/71/f801716d5be112d2a9b48da3eb663c01.jpg",
+            contentDescription = "Imagen tomada de Internet",
+            modifier = Modifier.size(50.dp),
+            contentScale = ContentScale.Crop
         )
     }
+
 }
