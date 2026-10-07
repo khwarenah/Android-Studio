@@ -67,7 +67,7 @@ fun ContentHomeView(paddingValues: PaddingValues, viewModel: CalcularViewModel){
         MainTextField(value = state.precio, onValueChange = {viewModel.onValue(it, "precio")}, label = "precio")
         spacer()
         MainTextField(value = state.descuento, onValueChange = {viewModel.onValue(it, "descuento")}, label = "descuento")
-        Spacer(10.dp)
+        Spacer()
         MainButton(text = "Generar descuento") {
             viewModel.calcula()
         }

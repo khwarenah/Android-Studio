@@ -20,7 +20,18 @@ fun TwoCards(title:String, number1:Double, number2:Double, title2:String) {
     Row(modifier = Modifier
         .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly) {
-        MainCard()
+        MainCard(
+            title,number1, modifier = Modifier
+                .padding(30.dp)
+                .weight(1F)
+        )
+        spacer()
+        MainCard(
+            title2,number2, modifier = Modifier
+                .padding(30.dp)
+                .weight(1F)
+
+        )
 
     }
 
