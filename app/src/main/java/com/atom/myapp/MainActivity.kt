@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -34,12 +35,14 @@ import com.atom.myapp.mvv.MainViewModel
 import com.atom.myapp.ui.theme.MyAppTheme
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-
+import com.atom.myapp.mvv.ItemViewModel
+import androidx.compose.foundation.lazy.items
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val ViewModel: MainViewModel by viewModels()
+       // val ViewModel: MainViewModel by viewModels()
+        val itemList : ItemViewModel by viewModels()
         enableEdgeToEdge()
         setContent {
             MyAppTheme {
@@ -48,33 +51,33 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize(),
                     color= MaterialTheme.colorScheme.background
                 ){
-                    ContentView(viewModel())
+                    ItemsView(viewModel())
                 }
             }
         }
     }
 }
 
-@Composable
-fun ContentView(viewModel: MainViewModel){
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        BotonColor()
-        Spacer(modifier= Modifier.width(10.dp))
-        if(viewModel.cargando){
-            CircularProgressIndicator()
-        }
-        else{
-            Text(viewModel.resultState)
-        }
-
-        Button(onClick = { viewModel.fetchData()}){
-            Text("Llamar a API")
-        }
-    }
-}
+//@Composable
+//fun ContentView(viewModel: MainViewModel){
+//    Column(
+//        verticalArrangement = Arrangement.Center,
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ){
+//        BotonColor()
+//        Spacer(modifier= Modifier.width(10.dp))
+//        if(viewModel.cargando){
+//            CircularProgressIndicator()
+//        }
+//        else{
+//            Text(viewModel.resultState)
+//        }
+//
+//        Button(onClick = { viewModel.fetchData()}){
+//            Text("Llamar a API")
+//        }
+//    }
+//}
 
 @Composable
 fun BotonColor(){
@@ -85,4 +88,22 @@ fun BotonColor(){
         )){
         Text("Cambiar Color")
     }
+}
+
+@Composable
+fun ItemsView(viewModel : ItemViewModel){
+    val itemList=viewModel.itemList
+    Column() {
+        if(viewModel.cargando){
+            CircularProgressIndicator()
+        }
+        else{
+            LazyColumn() {
+                items(items = itemList) { item ->
+                    Text(text = item.name)
+                }
+            }
+        }
+    }
+
 }
