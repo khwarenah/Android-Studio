@@ -1,5 +1,6 @@
 package com.atom.myapp.mvv
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -9,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.atom.myapp.data.ItemsModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -21,6 +23,9 @@ class ItemViewModel : ViewModel(){
 
     var cargando by mutableStateOf(false)
         private set
+
+    private var _lista : MutableStateFlow<List<ItemsModel>> = MutableStateFlow( emptyList())
+    val lista=_lista
 
     init{
         fetchData()
@@ -58,5 +63,6 @@ class ItemViewModel : ViewModel(){
             )
         }
         itemList.addAll(result)
+        lista.value = result
     }
 }

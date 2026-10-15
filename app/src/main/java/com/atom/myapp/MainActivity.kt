@@ -37,6 +37,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.atom.myapp.mvv.ItemViewModel
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.collectAsState
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,6 +94,8 @@ fun BotonColor(){
 @Composable
 fun ItemsView(viewModel : ItemViewModel){
     val itemList=viewModel.itemList
+    val lista by viewModel.lista.collectAsState()
+
     Column() {
         if(viewModel.cargando){
             CircularProgressIndicator()
