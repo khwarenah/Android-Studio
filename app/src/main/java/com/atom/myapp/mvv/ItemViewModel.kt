@@ -13,38 +13,37 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ItemViewModel : ViewModel(){
-    var resultState by mutableStateOf(value = "")
+    var resultState by mutableStateOf("")
         private set
 
-    var itemList = mutableStateListOf<ItemViewModel>()
-        private  set
+    var itemList = mutableStateListOf(ItemsModel())
+        private set
+
     var cargando by mutableStateOf(false)
         private set
 
-
-
-    init {
+    init{
         fetchData()
     }
 
     private fun fetchData(){
         viewModelScope.launch {
             try{
-                cargando = true
-                LlmarAPI()
+                cargando=true
+                LlamarAPI()
             }
-            catch (e: Exception){
+            catch(e: Exception){
                 println("Error: ${e.message}")
             }
             finally {
-                cargando = false
+                cargando=false
             }
         }
-
     }
 
-    private suspend fun LlmarAPI(){
-        val result = withContext(Dispatchers.IO){
+    private suspend fun LlamarAPI(){
+        val result= withContext(Dispatchers.IO){
+            delay(5000)
             listOf(
                 ItemsModel(1, "Elemento 1"), ItemsModel(2, "Elemento 2"), ItemsModel(3, "Elemento 3"), ItemsModel(4, "Elemento 4"), ItemsModel(5, "Elemento 5"),
                 ItemsModel(6, "Elemento 6"), ItemsModel(7, "Elemento 7"), ItemsModel(8, "Elemento 8"), ItemsModel(9, "Elemento 9"), ItemsModel(10, "Elemento 10"),
@@ -58,7 +57,6 @@ class ItemViewModel : ViewModel(){
                 ItemsModel(46, "Elemento 46"), ItemsModel(47, "Elemento 47"), ItemsModel(48, "Elemento 48"), ItemsModel(49, "Elemento 49"), ItemsModel(50, "Elemento 50")
             )
         }
-        itemList.addAll( elements = result)
+        itemList.addAll(result)
     }
 }
-
