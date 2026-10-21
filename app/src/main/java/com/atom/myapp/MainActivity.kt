@@ -30,6 +30,7 @@ import androidx.compose.ui.text.input.KeyboardType
 
 import androidx.compose.ui.unit.dp
 import com.atom.myapp.Data.StoreUserMail
+import com.atom.myapp.navigation.Navigate
 import com.atom.myapp.ui.theme.MyAppTheme
 import kotlinx.coroutines.launch
 
@@ -40,46 +41,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+
+                    Navigate()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    val context= LocalContext.current
-    val scope = rememberCoroutineScope()
-    val dataStore = StoreUserMail(context)
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
-    ){
-        var email by rememberSaveable {mutableStateOf("")}
-        var userMail = dataStore.getMail.collectAsState(initial = "")
-        TextField(
-            value= email,
-            onValueChange = {email = it},
-            label={ Text(text="Email")},
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
-
-        )
-        Spacer(modifier=Modifier.height(10.dp))
-        Button(onClick = {
-            scope.launch {
-                dataStore.saveMail(email)
-            }
-        }) {
-            Text(text = "Guardar Email")
-        }
-        Spacer(modifier=Modifier.height(10.dp))
-        Text(userMail.value.toString())
-    }
-
-
-}
