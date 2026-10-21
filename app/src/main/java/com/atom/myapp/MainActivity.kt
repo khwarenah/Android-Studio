@@ -1,4 +1,5 @@
 package com.atom.myapp
+
 import android.R.attr.label
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,7 +14,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -27,23 +30,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
-
 import androidx.compose.ui.unit.dp
+import com.atom.myapp.Data.StoreDarkMode
 import com.atom.myapp.Data.StoreUserMail
 import com.atom.myapp.ui.theme.MyAppTheme
 import kotlinx.coroutines.launch
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MyAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            val darkModeStore = StoreDarkMode(this)
+            val darkMode=darkModeStore.getDarkMode.collectAsState(false)
+            MyAppTheme (
+                darkTheme = darkMode.value
+            ){
+                Surface(
+                    modifier= Modifier.fillMaxSize(),
+                    color= MaterialTheme.colorScheme.background
+                ){
+                    Greeting(darkModeStore,darkMode.value)
                 }
             }
         }
@@ -51,7 +59,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(darkModeStore: StoreDarkMode, darkMode:Boolean) {
     val context= LocalContext.current
     val scope = rememberCoroutineScope()
     val dataStore = StoreUserMail(context)
@@ -79,6 +87,19 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         }
         Spacer(modifier=Modifier.height(10.dp))
         Text(userMail.value.toString())
+        Spacer(modifier=Modifier.height(16.dp))
+        Button(onClick = {
+            scope.launch {
+                if(darkMode){
+                    darkModeStore.saveDarkMode(false)
+                }
+                else{
+                    darkModeStore.saveDarkMode(true)
+                }
+            }
+        }){
+            Text("Cambiar a modo oscuro")
+        }
     }
 
 
