@@ -32,6 +32,7 @@ fun RegistroScreen(navController: NavController) {
 
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
+    var userName by rememberSaveable { mutableStateOf("") }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -52,6 +53,15 @@ fun RegistroScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         TextField(
+            value = userName,
+            onValueChange = {userName = it},
+            label = {Text(text = "Nombre Usuario")}
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+
+        TextField(
             value = password,
             onValueChange = { password = it },
             label = { Text(text = "Contraseña") },
@@ -62,7 +72,7 @@ fun RegistroScreen(navController: NavController) {
 
         Button(onClick = {
             scope.launch {
-                dataStore.saveMail(email, password)
+                dataStore.saveMail(email, password, userName)
                 navController.navigate("Login")
             }
         }) {
