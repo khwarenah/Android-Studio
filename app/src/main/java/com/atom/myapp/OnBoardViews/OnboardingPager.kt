@@ -46,7 +46,11 @@ fun OnBoardingPager(
     val context = LocalContext.current
     val prefs = context.getSharedPreferences("MarcadorPrefs", Context.MODE_PRIVATE)
 
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color(0xFF091413))
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxSize()

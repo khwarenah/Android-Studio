@@ -3,7 +3,6 @@ package com.atom.myapp.Views
 import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -64,25 +63,23 @@ fun HomeView(onReset: () -> Unit) {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .background(Color(0xFF1E88E5))
-                    .clickable { puntos1++ }
+                    .background(Color(0xFF408A71))
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-
                 Image(
-                    painter = painterResource(id = R.drawable.castersursus),
+                    painter = painterResource(id = R.drawable.equipo1),
                     contentDescription = "Logo Equipo 1",
-                    modifier = Modifier.size(100.dp)
+                    modifier = Modifier.size(250.dp)
                 )
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
                     text = nombre1,
-                    color = Color.White,
-                    fontSize = 24.sp,
+                    color =Color(0xFF091413),
+                    fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                 )
@@ -90,15 +87,28 @@ fun HomeView(onReset: () -> Unit) {
                 Text(
                     text = puntos1.toString(),
                     color = Color.White,
-                    fontSize = 90.sp,
+                    fontSize = 80.sp,
                     fontWeight = FontWeight.Bold
                 )
 
-                OutlinedButton(
-                    onClick = { if (puntos1 > 0) puntos1-- },
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("-1")
+                    OutlinedButton(
+                        onClick = { if (puntos1 > 0) puntos1-- },
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                    ) {
+                        Text("-1", fontSize = 16.sp)
+                    }
+
+                    Button(
+                        onClick = { puntos1++ },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Color(0xFF1E88E5))
+                    ) {
+                        Text("+", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    }
                 }
             }
 
@@ -107,25 +117,23 @@ fun HomeView(onReset: () -> Unit) {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .background(Color(0xFFE53935))
-                    .clickable { puntos2++ }
+                    .background(Color(0xFF285A48))
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-
                 Image(
-                    painter = painterResource(id = R.drawable.castersursus),
+                    painter = painterResource(id = R.drawable.equipo2),
                     contentDescription = "Logo Equipo 2",
-                    modifier = Modifier.size(100.dp)
+                    modifier = Modifier.size(250.dp)
                 )
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
                     text = nombre2,
-                    color = Color.White,
-                    fontSize = 24.sp,
+                    color = Color(0xFF091413),
+                    fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                 )
@@ -133,19 +141,31 @@ fun HomeView(onReset: () -> Unit) {
                 Text(
                     text = puntos2.toString(),
                     color = Color.White,
-                    fontSize = 90.sp,
+                    fontSize = 80.sp,
                     fontWeight = FontWeight.Bold
                 )
 
-                OutlinedButton(
-                    onClick = { if (puntos2 > 0) puntos2-- },
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("-1")
+                    OutlinedButton(
+                        onClick = { if (puntos2 > 0) puntos2-- },
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                    ) {
+                        Text("-1", fontSize = 16.sp)
+                    }
+
+                    Button(
+                        onClick = { puntos2++ },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Color(0xFFE53935))
+                    ) {
+                        Text("+", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    }
                 }
             }
         }
-
 
         Button(
             onClick = { onReset() },

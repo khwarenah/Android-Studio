@@ -17,19 +17,20 @@ fun MainOnBoarding(onFinish: () -> Unit) {
 
     items.add(
         PageData(
-            image = R.raw.redcar,
+            image = R.raw.g1,
             titulo = "Equipo Local",
-            descripcion = "Configura el equipo de casa",
-            teamColor = 0xFF1E88E5
+            descripcion = "",
+            teamColor = 0xFF408A71
         )
     )
 
     items.add(
         PageData(
-            image = R.raw.carwash,
+            image = R.raw.g1,
             titulo = "Equipo Visitante",
-            descripcion = "Configura al equipo rival",
-            teamColor = 0xFFE53935
+            descripcion = "",
+            teamColor = 0xFF285A48
+
         )
     )
 
