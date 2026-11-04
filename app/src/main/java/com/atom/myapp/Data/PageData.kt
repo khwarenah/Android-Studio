@@ -5,7 +5,7 @@ import android.media.Image
 data class PageData(
         val image: Int,
         val titulo: String,
-        val descripcion: String
-
+        val descripcion: String,
+        val teamColor: Long
 
         )

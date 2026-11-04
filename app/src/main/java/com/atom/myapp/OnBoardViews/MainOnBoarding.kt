@@ -12,43 +12,30 @@ import androidx.compose.foundation.pager.rememberPagerState
 
 @OptIn  (ExperimentalPagerApi::class)
 @Composable
-fun MainOnBoarding(onFinish: () -> Unit){
-    val items= ArrayList<PageData>()
+fun MainOnBoarding(onFinish: () -> Unit) {
+    val items = ArrayList<PageData>()
 
     items.add(
         PageData(
-            R.raw.welcome,
-            titulo ="Entrada",
-            descripcion = "Descripcion de la aplicacion en el momento de la entrada"
+            image = R.raw.redcar,
+            titulo = "Equipo Local",
+            descripcion = "Configura el equipo de casa",
+            teamColor = 0xFF1E88E5
         )
     )
 
     items.add(
         PageData(
-            R.raw.carwash,
-            titulo="Medio",
-            descripcion = "Descripcion de la aplicacion en el momento medio de la aplicacion"
+            image = R.raw.carwash,
+            titulo = "Equipo Visitante",
+            descripcion = "Configura al equipo rival",
+            teamColor = 0xFFE53935
         )
     )
 
-    items.add(
-        PageData(
-            R.raw.redcar,
-            titulo ="Entrada",
-            descripcion = "Descripcion de la aplicacion en el momento de la entrada"
-        )
-    )
-
-    val pagerState = rememberPagerState(
-        initialPage = 0,
-        pageCount = { items.size }
-    )
 
     OnBoardingPager(
         item = items,
-        pagerState = pagerState,
-        modifier = Modifier.fillMaxSize().background(Color.White),
         onFinish = onFinish
     )
-
 }
