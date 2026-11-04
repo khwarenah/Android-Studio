@@ -27,11 +27,12 @@ import kotlin.io.path.ExperimentalPathApi
 fun OnBoardingPager(
     item: List<PageData>,
     pagerState: PagerState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onFinish: () -> Unit
 
 
 ){
-    Box(modifier = Modifier ){
+    Box(modifier = modifier ){
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -64,7 +65,7 @@ fun OnBoardingPager(
             Box(
                 modifier = Modifier.align(Alignment.BottomCenter)
             ){
-                ButtonFinish(pagerState.currentPage)
+                ButtonFinish(pagerState.currentPage, onFinish)
             }
     }
 }

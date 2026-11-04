@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ButtonFinish(currentPage: Int){
+fun ButtonFinish(currentPage: Int, onFinish: () -> Unit){
     Row(
         modifier = Modifier
             .padding(20.dp)
@@ -22,8 +22,8 @@ fun ButtonFinish(currentPage: Int){
 
     )
     {
-        if(currentPage==1){
-            OutlinedButton(onClick = {}) {
+        if(currentPage==2){
+            OutlinedButton(onClick = {onFinish()}) {
                 Text("Entrar", modifier = Modifier
                     .padding(horizontal = 8.dp, vertical = 40.dp),
                     color = Color.Magenta

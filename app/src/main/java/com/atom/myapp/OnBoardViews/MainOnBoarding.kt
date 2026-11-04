@@ -12,7 +12,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 
 @OptIn  (ExperimentalPagerApi::class)
 @Composable
-fun MainOnBoarding(){
+fun MainOnBoarding(onFinish: () -> Unit){
     val items= ArrayList<PageData>()
 
     items.add(
@@ -45,9 +45,10 @@ fun MainOnBoarding(){
     )
 
     OnBoardingPager(
-        item =items, pagerState = pagerState, modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
+        item = items,
+        pagerState = pagerState,
+        modifier = Modifier.fillMaxSize().background(Color.White),
+        onFinish = onFinish
     )
 
 }
